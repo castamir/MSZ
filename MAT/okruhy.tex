@@ -10,7 +10,72 @@
 \begin{document} \sloppy
 \titlepageandcontents
 
+\section{Jazyk a sémantika predikátové logiky (termy, formule, realizace jazyka, pravdivost formulí)}
+%=================================================
+\section{Formální systém predikátové logiky (axiomy a odvozovací pravidla, dokazatelnost, model a důsledek teorie, věty o úplnosti a kompaktnosti, prenexní tvar formulí)}
+%=================================================
+\section{Algebraické struktury (grupy, okruhy, obory integrity a tělesa, svazy a Boolovy algebry, univerzální algebry)}
+%=================================================
+\section{Základní algebraické metody (podalgebry, homomorfismy, přímé součiny, kongruence a faktorové algebry, normální podgrupy a ideály okruhů)}
+%=================================================
+\section{Obory integrity a dělitelnost (okruhy polynomů, pravidla dělitelnosti, Gaussovy a Eukleidovy okruhy)}
+%=================================================
+\section{Teorie polí (minimální pole, rozšíření pole, konečná pole a jejich konstrukce)}
+%=================================================
+\section{Metrické prostory (příklady, konvergence posloupností, spojitá a izometrická zobrazení, úplnost, Banachova věta o pevném bodu)}
+%=================================================
+\section{Normované a unitární prostory (základní vlastnosti a příklady, normované prostory konečné dimenze, uzavřené ortonormální systémy a Fourierovy řady)}
+%=================================================
+\section{Obyčejné grafy (stupně uzlů, cesty a kružnice, souvislost grafu, stromy, kostry, Kruskalův a Primův algoritmus pro hledání minimální kostry ohodnoceného grafu, eulerovské a hamiltonovské grafy, obarvitelnost a planarita)}
 
+\textbf{Obecný graf} je uspořádaná trojice $G = (V, E, f)$, kde
+\begin{itemize}
+\item $V$ je neprázdná konečná množina vrcholů (uzlů),
+\item $E$ je konečná množina hran,
+\item $f$ je \textit{incidenční} zobrazení $f$: $E \rightarrow V^2$, které přiřazuje každé hraně $e \in E$ uspořádanou dvojici vrcholů $(x,y) \in V^2$.
+\end{itemize}
+
+Uzel $x$ se nazývá \textbf{počáteční uzel hrany} $e$, uzel $y$ se nazývá \textbf{koncový uzel hrany} $e$.
+
+O uzlech spojených hranou, říkáme, že spolu \textbf{sousedí}, jsou to tedy \textbf{sousední uzly}. Ve vztahu uzel - hrana se používá pojem \textbf{incidence}. Uzel, který není incidentní s žádnou hranou, je označován jako \textbf{izolovaný uzel}.
+
+Je-li $x = y$, pak hrana $(x, y)$ je označována jako smyčka.
+
+Definice incidenčního zobrazení připouští existenci dvou různých hran $h_1$ a $h_2$ takových, že $f(h_1) = f(h_2) = (x,y)$. V tom případě hovoříme o tzv. \textbf{násobných hranách}.
+
+Graf bez násobných hran se nazývá \textbf{prostý}. Graf, který není prostý, se označuje jako \textbf{multigraf}. 
+
+Graf je \textbf{úplný}, pokud mezi každými dvěma uzly existuje právě jedna hrana.
+
+\textbf{Neorientovný graf} je graf $G = (V, E)$, který obsahuje neorientované hrany, tedy kde $E \subseteq {V \choose 2}$ a kde pro každou hranu $(x, y) \in E$ platí, že i $(y, x) \in E$. Neorientovaný graf neobsahuje smyšky.
+
+\textbf{Orientovný graf} je graf $G = (V, E)$, který obsahuje orientované hrany, tedy kde $E \subseteq V \times V$.
+
+\textbf{Sled}
+
+\textbf{Tah}
+
+\textbf{Cesta}
+
+\textbf{Kružnice}
+
+\textbf{Souvislý graf}
+
+\textbf{Podgraf grafu}
+
+\textbf{Faktor grafu} Podgraf indukovaný v''
+
+\textbf{Komponenta grafu}
+
+\textbf{Most}
+
+\textbf{Stupeň vrcholů}
+
+\textbf{Pro obyčejné grafy platí}
+%=================================================
+\section{Orientované grafy (orientované cesty a kružnice, souvislost a silná souvislost, turnaj, eulerovské a hamiltonovské grafy, Dijkstrův a Floyd-Warshallův algoritmus pro hledání cesty minimální délky)}
+
+\textbf{Orientovaný graf} je graf $G = (V, E)$, kde $E \subseteq V^2$. Hrany $(u,u)$ se nazývají \textit{smyčky}.
 
 \end{document}
 
