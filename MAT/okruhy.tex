@@ -29,56 +29,58 @@
 %=================================================
 \section{Obyčejné grafy (stupně uzlů, cesty a kružnice, souvislost grafu, stromy, kostry, Kruskalův a Primův algoritmus pro hledání minimální kostry ohodnoceného grafu, eulerovské a hamiltonovské grafy, obarvitelnost a planarita)}
 
-\textbf{Obecný graf} je uspořádaná trojice $G = (V, E, f)$, kde
+\begin{itemize}
+\item \textbf{Obecný graf} je uspořádaná trojice $G = (V, E, f)$, kde
 \begin{itemize}
 \item $V$ je neprázdná konečná množina vrcholů (uzlů),
 \item $E$ je konečná množina hran,
 \item $f$ je \textit{incidenční} zobrazení $f$: $E \rightarrow V^2$, které přiřazuje každé hraně $e \in E$ uspořádanou dvojici vrcholů $(x,y) \in V^2$.
 \end{itemize}
 
-Uzel $x$ se nazývá \textbf{počáteční uzel hrany} $e$, uzel $y$ se nazývá \textbf{koncový uzel hrany} $e$.
+\item Uzel $x$ se nazývá \textbf{počáteční uzel hrany} $e$, uzel $y$ se nazývá \textbf{koncový uzel hrany} $e$.
 
-O uzlech spojených hranou, říkáme, že spolu \textbf{sousedí}, jsou to tedy \textbf{sousední uzly}. Ve vztahu uzel - hrana se používá pojem \textbf{incidence}. Uzel, který není incidentní s žádnou hranou, je označován jako \textbf{izolovaný uzel}.
+\item O uzlech spojených hranou, říkáme, že spolu \textbf{sousedí}, jsou to tedy \textbf{sousední uzly}. Ve vztahu uzel - hrana se používá pojem \textbf{incidence}. Uzel, který není incidentní s žádnou hranou, je označován jako \textbf{izolovaný uzel}.
 
-Je-li $x = y$, pak hrana $(x, y)$ je označována jako smyčka.
+\item Je-li $x = y$, pak hrana $(x, y)$ je označována jako smyčka.
 
-Definice incidenčního zobrazení připouští existenci dvou různých hran $h_1$ a $h_2$ takových, že $f(h_1) = f(h_2) = (x,y)$. V tom případě hovoříme o tzv. \textbf{násobných hranách}.
+\item Definice incidenčního zobrazení připouští existenci dvou různých hran $h_1$ a $h_2$ takových, že $f(h_1) = f(h_2) = (x,y)$. V tom případě hovoříme o tzv. \textbf{násobných hranách}.
 
-Graf bez násobných hran se nazývá \textbf{prostý}. Graf, který není prostý, se označuje jako \textbf{multigraf}. 
+\item Graf bez násobných hran se nazývá \textbf{prostý}. Graf, který není prostý, se označuje jako \textbf{multigraf}. 
 
-Graf je \textbf{úplný}, pokud mezi každými dvěma uzly existuje právě jedna hrana.
+\item Graf je \textbf{úplný}, pokud mezi každými dvěma uzly existuje právě jedna hrana.
 
-\textbf{Neorientovný graf} je graf $G = (V, E)$, který obsahuje neorientované hrany, tedy kde $E \subseteq {V \choose 2}$ a kde pro každou hranu $(x, y) \in E$ platí, že i $(y, x) \in E$. Neorientovaný graf neobsahuje smyšky.
+\item \textbf{Neorientovný graf} je graf $G = (V, E)$, který obsahuje neorientované hrany, tedy kde $E \subseteq {V \choose 2}$ a kde pro každou hranu $(x, y) \in E$ platí, že i $(y, x) \in E$. Neorientovaný graf neobsahuje smyšky.
 
-\textbf{Orientovný graf} je graf $G = (V, E)$, který obsahuje orientované hrany, tedy kde $E \subseteq V \times V$.
+\item \textbf{Orientovný graf} je graf $G = (V, E)$, který obsahuje orientované hrany, tedy kde $E \subseteq V \times V$.
 
-Posloupnost uzlů v, kde $(v_{i-1}, v_i) \in E$ pro $i = 1,2,\dots,k$, se nazývá \textbf{sled} délky $k$ z \ $v_0$ do $v_k$. Pokud existuje sled $s$ z $u$ do $u'$, říkáme, že $u'$ je \textbf{dosažitelný} z $u$ sledem $s$, značeno $u \overset{s}{\leadsto} u'$.
+\item Posloupnost uzlů v, kde $(v_{i-1}, v_i) \in E$ pro $i = 1,2,\dots,k$, se nazývá \textbf{sled} délky $k$ z \ $v_0$ do $v_k$. Pokud existuje sled $s$ z $u$ do $u'$, říkáme, že $u'$ je \textbf{dosažitelný} z $u$ sledem $s$, značeno $u \overset{s}{\leadsto} u'$.
 
-\textbf{Tah} je sled, ve kterém se neopakují hrany.
+\item \textbf{Tah} je sled, ve kterém se neopakují hrany.
 
-\textbf{Cesta} je sled, ve kterém se neopakují uzly.
+\item \textbf{Cesta} je sled, ve kterém se neopakují uzly.
 
-Sled (tah, cesta) $\langle v_0, v_1, v_2, \dots, v_k\rangle$ se nazývá \textbf{uzavřený}, pokud obsahuje alespoň jednu hranu a $v_0 = v_k$ (pro neorientovaný graf navíc požadujeme $k \geq 3$).
+\item Sled (tah, cesta) $\langle v_0, v_1, v_2, \dots, v_k\rangle$ se nazývá \textbf{uzavřený}, pokud obsahuje alespoň jednu hranu a $v_0 = v_k$ (pro neorientovaný graf navíc požadujeme $k \geq 3$).
 
-\textbf{Kružnice} je uzavřená cesta. Orientovaná kružnice se nazývá \textbf{cyklus}. Graf bez cyklů se nazývá \textbf{acyklický}.
+\item \textbf{Kružnice} je uzavřená cesta. Orientovaná kružnice se nazývá \textbf{cyklus}. Graf bez cyklů se nazývá \textbf{acyklický}.
 
-Neorientovaný graf se nazývá \textbf{souvislý}, pokud mezi libovolnými dvěma uzly existuje cesta.
+\item Neorientovaný graf se nazývá \textbf{souvislý}, pokud mezi libovolnými dvěma uzly existuje cesta.
 
-\textbf{Souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{je dosažitelný z}".
+\item \textbf{Souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{je dosažitelný z}".
 
-Orientovaný graf se nazývá \textbf{silně souvislý}, pokud mezi libovolnými dvěma uzly existuje orientovaná cesta.
+\item Orientovaný graf se nazývá \textbf{silně souvislý}, pokud mezi libovolnými dvěma uzly existuje orientovaná cesta.
 
-\textbf{Silně souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{jsou vzájemně dosažitelné}".
+\item \textbf{Silně souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{jsou vzájemně dosažitelné}".
 
-\textbf{Podgraf grafu} $G = (V, E)$ je graf $G' = (V', E')$, kde $V' \subseteq V$ a $E' \subseteq E$.
+\item \textbf{Podgraf grafu} $G = (V, E)$ je graf $G' = (V', E')$, kde $V' \subseteq V$ a $E' \subseteq E$.
 
-\textbf{Faktor grafu} je podgraf $G' = (V, E')$ a je indukovaný množinou vrcholů $V$.
+\item \textbf{Faktor grafu} je podgraf $G' = (V, E')$ a je indukovaný množinou vrcholů $V$.
 
-\textbf{Most} je hrana, jejíž odebráním zvýšíme počet komponent grafu.
+\item \textbf{Most} je hrana, jejíž odebráním zvýšíme počet komponent grafu.
 
-\textbf{Stupeň vrcholu} $u$ je číslo $deg(u)$ definované jako počet hran incidentních s vrcholem $u$.
+\item \textbf{Stupeň vrcholu} $u$ je číslo $deg(u)$ definované jako počet hran incidentních s vrcholem $u$.
 
-\textbf{Pro obyčejné grafy platí}: $\sum_{v \in V} deg(u) = 2m$, kde $m = |E|$.
+\item \textbf{Pro obyčejné grafy platí}: $\sum_{v \in V} deg(u) = 2m$, kde $m = |E|$.
+\end{itemize}
 %=================================================
 \section{Orientované grafy (orientované cesty a kružnice, souvislost a silná souvislost, turnaj, eulerovské a hamiltonovské grafy, Dijkstrův a Floyd-Warshallův algoritmus pro hledání cesty minimální délky)}
 
