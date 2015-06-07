@@ -212,6 +212,10 @@ Model P2P sítě (viz obrázek \ref{p2p_model}) se skládá z komponent:
 \begin{itemize}
 \item Kombinace geometrické struktury (uzel minimálně ví, že když pošle dotaz určitým směrem, tak to je blíž, a když ho pošle jiným směrem, tak je to dál -- je si vědom geometrické struktury -- rozdíl oproti nestrukturovaným) a směrování.
 \item Distribuované směrovací algoritmy pomocí vzdálenosti (shoda prefixu, euklidovská či lineární vzdálenost, XOR) -- velikost směrovací tabulky ovlivněna počtem uzlů.
+\item Geometrie sítě je klíčovým parametrem.
+\item Operace pro připojení, odpojení a vyhledání uzlu.
+\item Nutnost sledovat stav sousedů a tím pádem aktualizovat tabulky.
+\item BitTorrent, Skype$\ldots$
 \end{itemize}
 
 \subsubsection{Síť Pastry}
@@ -224,14 +228,54 @@ Model P2P sítě (viz obrázek \ref{p2p_model}) se skládá z komponent:
 \item Používají se 128--bitové identifikátory.
 \end{itemize}
 
-\subsubsection{Uzel sítě Pastry}
+\subsubsection*{Uzel sítě Pastry}
 Uzel obsahuje:
 \begin{itemize}
-\item Identifikáto uzlu (NodeId) -- generován při připojení uzlu.
-\item Tabulku listů $L$ -- uzly, které jsou numericky nejblíže.
-\item Směrovací tabulku $R$ -- pro hledání cesty.
-\item Tabulku sousedů $M$ -- uzly, které jsou vzdálenostně nejblíže.
+\item Identifikátor uzlu (NodeId) -- generován při připojení uzlu.
+\item Tabulku listů $L$ -- uzly, které jsou numericky nejblíže. Rozdělena na dvě části -- listy s menším ID a listy s větším ID (vzhledem k vlastnímu ID).
+\item Směrovací tabulku $R$ -- pro hledání cesty do dalšího uzlu, vyhledávám na základě nejdelšího shodného prefixu s názvem zdroje, který hledám. Pro shodu délky 0 beru první řadek (viz obrázek \ref{pastry_node}), pro shodu délky 1 druhý $\ldots$ Vyšedlé hodnoty znamenají, že to odpovídá mému uzlu. Prázdné chlívky znamenají, že takový uzel neexistuje nebo o něm nevím.
+\item Tabulku sousedů $M$ -- uzly, které jsou vzdálenostně nejblíže. Nepoužívá se pro směrování, ale pro lokalizaci. Okolní body, se kterými můžu komunikovat. S touto množinou si vyměňuji keep alive zprávy.
+\end{itemize}
+%---obrazek
+\begin{figure}[ht!]
+\begin{center}
+\scalebox{1.0}{\includegraphics{images/pastry_node.png}}
+\caption{Uzel v síti Pastry.}
+\label{pastry_node}
+\end{center}
+\end{figure}
+%---konec obrazek
+
+\subsubsection*{Směrování}
+Několik stupňů:
+\begin{itemize}
+\item Pokud se klíč rovná NodeID, je ten uzel $A$ cíl.
+\item Pokud je klíč v rozmezí nodeID listů $L$ (leaf set) -- pošl zprávu do uzlu s nejmenší vzdáleností.
+\item Jinak najdi ve směrovací tablce řádek s nejdelším společným prefixem a pošli tam zprávu -- pokud ta hodnota není prázdná.
+\item Jinak vyber takový uzel $T \in (L \cup T \cup R)$, který má nejdelší společný prefix a lepší numerickou vzdálenost než uzel A (já), a přepošli to tam.
 \end{itemize}
 
+\subsubsection*{Připojení nového uzlu -- join()}
+\begin{itemize}
+\item Potřeba inicilalizovat stavové tabulky a informovat okolní uzly.
+\item Nový uzel ví o nejbližším uzlu $A$ (lze zjisti multicastem či rozšiřujícím kruhem).
+\end{itemize}
+%---obrazek
+\begin{figure}[ht!]
+\begin{center}
+\scalebox{0.65}{\includegraphics{images/pastry_join.png}}
+\caption{Přidání uzlu.}
+\label{pastry_join}
+\end{center}
+\end{figure}
+%---konec obrazek
+
+\subsubsection*{Odpojení uzlu}
+Po odpojení uzlu se musí udělat (zjednodušeně musím za něj získat náhrady):
+\begin{itemize}
+\item Náhrada v tabulce listů $L_Y$ -- vyberu si uzel, který mu byl numericky nejblížsí, a vezmu jako náhradu za ten, co odešel.
+\item Náhrada ve směrovací tabulce za $R$ -- snažím se najít jiný záznam -- vyhledám uzel na stejném řádku tabulky $R$, požádám ten uzel o souseda s nejdelším prefixem a tím nahradím ten odchozí uzel.
+\item Náhrada v tabulce sousedů -- pokud se mi někdo neozývá (nereaguje na keep alive), požádám uzly, ať mi pošlou svoje tabulky sousedů a já si vyberu náhradu podle vzdálenosti,
+\end{itemize}
 \end{document}
 
