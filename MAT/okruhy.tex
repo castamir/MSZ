@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \input{../config}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{moreverb}
 \usepackage{float}
 
@@ -51,31 +52,36 @@ Graf je \textbf{úplný}, pokud mezi každými dvěma uzly existuje právě jedn
 
 \textbf{Orientovný graf} je graf $G = (V, E)$, který obsahuje orientované hrany, tedy kde $E \subseteq V \times V$.
 
-\textbf{Sled}
+Posloupnost uzlů v, kde $(v_{i-1}, v_i) \in E$ pro $i = 1,2,\dots,k$, se nazývá \textbf{sled} délky $k$ z \ $v_0$ do $v_k$. Pokud existuje sled $s$ z $u$ do $u'$, říkáme, že $u'$ je \textbf{dosažitelný} z $u$ sledem $s$, značeno $u \overset{s}{\leadsto} u'$.
 
-\textbf{Tah}
+\textbf{Tah} je sled, ve kterém se neopakují hrany.
 
-\textbf{Cesta}
+\textbf{Cesta} je sled, ve kterém se neopakují uzly.
 
-\textbf{Kružnice}
+Sled (tah, cesta) $\langle v_0, v_1, v_2, \dots, v_k\rangle$ se nazývá \textbf{uzavřený}, pokud obsahuje alespoň jednu hranu a $v_0 = v_k$ (pro neorientovaný graf navíc požadujeme $k \geq 3$).
 
-\textbf{Souvislý graf}
+\textbf{Kružnice} je uzavřená cesta. Orientovaná kružnice se nazývá \textbf{cyklus}. Graf bez cyklů se nazývá \textbf{acyklický}.
 
-\textbf{Podgraf grafu}
+Neorientovaný graf se nazývá \textbf{souvislý}, pokud mezi libovolnými dvěma uzly existuje cesta.
 
-\textbf{Faktor grafu} Podgraf indukovaný v''
+\textbf{Souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{je dosažitelný z}".
 
-\textbf{Komponenta grafu}
+Orientovaný graf se nazývá \textbf{silně souvislý}, pokud mezi libovolnými dvěma uzly existuje orientovaná cesta.
 
-\textbf{Most}
+\textbf{Silně souvislé komponenty} grafu jsou třídy ekvivalence množiny uzlů podle relace "\textbf{jsou vzájemně dosažitelné}".
 
-\textbf{Stupeň vrcholů}
+\textbf{Podgraf grafu} $G = (V, E)$ je graf $G' = (V', E')$, kde $V' \subseteq V$ a $E' \subseteq E$.
 
-\textbf{Pro obyčejné grafy platí}
+\textbf{Faktor grafu} je podgraf $G' = (V, E')$ a je indukovaný množinou vrcholů $V$.
+
+\textbf{Most} je hrana, jejíž odebráním zvýšíme počet komponent grafu.
+
+\textbf{Stupeň vrcholu} $u$ je číslo $deg(u)$ definované jako počet hran incidentních s vrcholem $u$.
+
+\textbf{Pro obyčejné grafy platí}: $\sum_{v \in V} deg(u) = 2m$, kde $m = |E|$.
 %=================================================
 \section{Orientované grafy (orientované cesty a kružnice, souvislost a silná souvislost, turnaj, eulerovské a hamiltonovské grafy, Dijkstrův a Floyd-Warshallův algoritmus pro hledání cesty minimální délky)}
 
-\textbf{Orientovaný graf} je graf $G = (V, E)$, kde $E \subseteq V^2$. Hrany $(u,u)$ se nazývají \textit{smyčky}.
 
 \end{document}
 
