@@ -10,7 +10,53 @@
 \begin{document} \sloppy
 \titlepageandcontents
 
+\section{Sítě Peer-to-Peer (P2P), Milgramův problém malého světa, model sítě P2P, směrování v P2P
+sítích, strukturované a nestruktorvané sítě}
+\subsection{Milgramův problém malého světa}
+\begin{itemize}
+\item Základ pro P2P sítě.
+\item Potřebuji předat informaci člověku, kterého znám (mám informace o tom, kde se narodil atp.), ale neznám jeho adresu. Jsem shopen mu zásilku předat, aniž bych ji posílal klasickou poštou, jenom skrze lidi, které on zná a já znám (známé mých znamých)? 
+\item Tato otázka vvychází z poznatku jaká je pravděpodobnost, že se znají dva náhodně vybraní lidé. A pokud se neznají osobně, tak přes kolik známých se znají.
+\item V podstatě hledáme matematické struktury ve společnosti. Máme stovky tisíc bodů a ptáme se přes kolik mezilehlých bodů je možné vytvořit nejkratší cestu pro dva libovlné uzly.
+\item Závěr zní, že jedinci, kteří používají \textbf{pouze lokální informace}, jsou \textbf{velmi efektivní} ve vytvoření nejkratší cesty mezi dvěma body v sociální síti. Z toho plyne, že propojení mezi dvěma jedinci v síti je možné pomocí malé posloupnosti známých.
+\item Otázkou je, zda existuje decentralizovaný aloritmus, který najde řetězec mezi dvěma libovolnými body. Odpoveď je \textbf{ano, existuje}.
+\end{itemize}
+\subsubsection{Milgramův experiment}
+\begin{itemize}
+\item Úkolem bylo doručit dopis příteli v jiném státě.
+\item Jako odesilatele vybral náhodných 160 lidí (předpoklad byl, že odesilateli byly zděleny informace o adresátovi -- jaké má povolání, kde studovat atp.).
+\item Dopis bylo možné předávat jenom skrze známé.
+\item Každý, kdo dostal zásilku, posílal potrzující dopis zpátky na Hradvard (výchozí bod).
+\item Výsledkem bylo, že nejkratší řetěz zpráv vedl přes 2 lidi, nejdelší přes 11 a medián bylo 5 lidí. Závěr tedy je, že stačí 5 lidí.
+\end{itemize}
 
-
+\subsection{Peer--to--Peer sítě}
+%---obrazek
+\begin{figure}[h!]
+\begin{center}
+\scalebox{0.8}{\includegraphics{images/overlay.png}}
+\caption{Overlay u P2P sítí (oranžové).}
+\label{p2p_overlay}
+\end{center}
+\end{figure}
+%---konec obrazek
+\begin{itemize}
+\item P2P sítě jsou postavené nad IP, ale mají:
+\begin{itemize}
+\item Jinou koncepci architektury -- odlišná role uzlů.
+\item Jiný způsob adresování -- adresování obsahem.
+\item Jiný přístup ke směrování -- uzly se odpojují/připojují libovolně.
+\item Jiné vlastnosti sítí -- samo--organizace, decentralismus.
+\end{itemize}
+\item Zdroje jsou dostupné všem -- slouží především pro sdílení zdrojů.
+\item Základní operace v P2P sítích: připojení uzlu, odpojení uzlu a vyhledání objektu.
+\item Všichni účastníci něco do sítě přinášejí a něco si z ní odnášejí (sdílím a stahuji).
+\item Základem sítí P2P je \textbf{overlay} (vlastní nezávislá síť -- viz obrázek \ref{p2p_overlay}) -- síť, která je vybudovaná nad fyzickou architekturou (uzly z overlay se mapují na fyzické). Mezi uzly existuje komunikace a protokol -- řešeno speciálním SW.
+\end{itemize}
+\subsubsection{Typy P2P sítí}
+\begin{itemize}
+\item \textbf{Pravé P2P sítě} -- všechny uzly mají stejný význam (tj. pokud odeberu uzel ze sítě nemá to to vliv na ztrátu schopnosti sítě poskytovat dané služby).
+\item \textbf{Hybridní P2P sítě} -- několik typů uzlů. Potřeba centrálního uzlu pro poskytování části nabízených služeb (tento bod slouží k autentizaci, indexování atp.). Jedná se o kombinaci P2P a klient--server.
+\end{itemize}
 \end{document}
 
